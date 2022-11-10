@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%block title%}
+    <title>Send sms</title>
+{%endblock%}
+
+{%block content%}
+
+<body >
+<div class="container">
+    <h1>Send SMS</h1>
+    <form action="{{url_for('send_sms')}}" method="post" class= "form-horizontal">
+        
+        {{form.csrf_token}}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <br>
+        {{form.recipients.label()}}
+        {{form.recipients(class="form_control")}}
+        <br>
+        {{form.originator.label()}}
+        {{form.originator(class="form_control")}}
+        <br>
+        <div class="radio">
+        {{form.encoding.label()}}
+        {{form.encoding(class="radio",style="list-style:none")}}
+        </div>
+        {{form.content.label()}}
+        {{form.content(class="form_control")}}
+        <br>
+        {{form.submit(class="btn btn-lg  btn-primary")}}
+ </form>
+ </div>
+   
+{%endblock%}
